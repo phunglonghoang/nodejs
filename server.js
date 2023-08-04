@@ -1,13 +1,14 @@
-const http = require('http');
+const express = require('express') //import express
+const app = express() //tạo app để chạy
+const port = 3000 //cổng chạy server trên windows
 
-const server = http.createServer((req, res) => {
-    console.log('run request ...')
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<h3>Hello world! </h3>');
-    res.write('<h2>from ERIC & HOI DAN IT </h2>');
-    res.end();
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 })
-
-server.listen(3000, 'localhost', () => {
-    console.log('Node.JS server is running on port: 3000');
+app.get('/about', (req, res) => {
+    res.send('Long hoàng')
+  })
+  
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
