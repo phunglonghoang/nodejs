@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ĐỒ Án</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/src/public/javascript/script.js"></script>
 </head>
 <body>
     <div class="topnav">
@@ -14,36 +15,73 @@
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
       </div>
-<h2>ListUser Table</h2>
-<table>
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>email</th>
-        <th>action</th>
-      </tr>
-    </thead>
-  <tbody>
-      <tr>
-        <% for(var i=0; i < dataUser.length; i++) { %>
+    <div>
+      <h2>ListUser Table</h2>
+      <div>
+        <table>
+          <thead>
             <tr>
-              <td><%= dataUser[i].id %></td>
-              <td><%= dataUser[i].firstName %></td>
-              <td><%= dataUser[i].lastName %></td>
-              <td><%= dataUser[i].email %> </td>
-              <td>
-                <button type="button"><a href="/detail/user/<%= dataUser[i].id %>"> detail</a></button> 
-                <button type="button">sửa</button>
-                <button type="button">xóa</button>
-                
-              </td>
+              <th>id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>email</th>
+              <th>action</th>
             </tr>
-         <% } %>
-      </tr>
-  </tbody>
-</table>
+          </thead>
+        <tbody>
+            <tr>
+              <% for(var i=0; i < dataUser.length; i++)
+               { %>
+                  <tr>
+                    <td><%= dataUser[i].id %></td>
+                    <td><%= dataUser[i].firstName %></td>
+                    <td><%= dataUser[i].lastName %></td>
+                    <td><%= dataUser[i].email %> </td>
+                    <td class="td_CRUD">
+                      <button type="button"><a href="/detail/user/<%= dataUser[i].id %>"> detail</a></button> 
+                      <form action="/edit-user/<%= dataUser[i].id %>" method="get">
+                        <input type="text" hidden  value="<%= dataUser[i].id %>" name="userId"/>
+                        <button type="submit">sửa</button>
+                      </form>
+    
+                      <form action="delete-user" method="post">
+                        <input type="text" hidden  value="<%= dataUser[i].id %>" name="userId"/>
+                        <button type="submit">xóa</button>
+                      </form>
+                    </td>
+                  </tr>
+               <% } %>
+            </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="createUser_container">
+        <form action="/create-new-user " method="post">
+        <h2>create New User</h2>
+        <div class="createUser">
+            <label for="">firstName</label>
+            <input type="text" name="firstName">
+        </div>
+        <div class="createUser">
+          <label for="">lastName</label>
+          <input type="text" name="lastName">
+      </div>
+        <div class="createUser">
+            <label for="">email</label>
+            <input type="email" name="email">
+        </div>
+
+        <div>
+          <button class="btn_submit" type="submit" onclick="hienThongBao()">submit</button>
+        </div>
+      </form>
+      </div>
+      
+    </div>
+    <div id="notification-box" class="notification-box">
+      <p id="notification-message" class="notification-message"></p>
+    </div>
+    
   
 </body>
 </html>

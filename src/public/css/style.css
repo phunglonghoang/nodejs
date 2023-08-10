@@ -41,9 +41,26 @@ img{
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+  td.td_CRUD{
+    display: flex;
+  }
   
   tr:hover {background-color: coral;}
   a {
     text-decoration: none !important;
     color: black;
+  }
+  .createUser_container{
+    text-align: center;
+  }
+  .createUser_container label{
+    display: block;
+    margin: 5px;
+  }
+  .btn_submit{
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  *{
+    background-color: skyblue;
   }
